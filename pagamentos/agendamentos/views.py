@@ -11,4 +11,18 @@ def criar_agendamento(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+@api_view(['GET'])
+def listar_agendamentos(request):
+    agendamentos = Agendamento.objects.all()
+    serializer = AgendamentoSerializer(agendamentos, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def consultar_agendamento(request, id):
+    try:
+        agendamento = Agendamento.objects.get(id=id)
+    except Agendamento.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = AgendamentoSerializer(agendamento)
+    return Response(serializer.data, status=status.HTTP_200_OK)
