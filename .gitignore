@@ -1,0 +1,30 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pdb
+
+# Ambientes virtuais
+venv/
+.env/
+env/
+.venv/
+
+# Configurações do IDE/editor
+.vscode/
+.idea/
+
+# Arquivos de logs
+*.log
+
+# Configurações de build
+build/
+dist/
+*.egg-info/
+
+# Arquivos de configuração específicos
+*.ini
+*.cfg
+*.yaml
+*.yml
