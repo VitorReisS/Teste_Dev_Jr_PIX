@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'agendamentos',
+    'rest_framework',
 ]
+
+APPEND_SLASH = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
