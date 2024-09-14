@@ -35,3 +35,16 @@ def deletar_agendamento(request, id):
         return Response(status=status.HTTP_404_NOT_FOUND)
     agendamento.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['PATCH'])
+def atualizar_agendamento(request, id):
+    try:
+        agendamento = Agendamento.objects.get(id=id)
+    except Agendamento.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    serializer = AgendamentoSerializer(agendamento, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
